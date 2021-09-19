@@ -133,14 +133,14 @@ function Home() {
           saving ? (
             <ReactLoading type={'bubbles'} />
           ) : (
-            <>
+            <section className="buttons">
               <button 
                 className="btn btn-green"
               >
                 Salvar
               </button>
               <Link to="/" className="btn btn-red">Cancelar</Link>
-            </>
+            </section>
           )
         }
 

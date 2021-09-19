@@ -23,3 +23,29 @@ form {
     margin-right: 5px;
   }
 }
+
+
+
+@media (max-width: 640px) {
+  form {
+
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    
+    h2 {
+      padding-top: 20px;
+    }
+    
+    section.inputs {
+      display: block;
+      width: 90%;
+      margin: 0 auto;
+    }
+
+    section.buttons {
+      display: flex;
+      justify-content: center;
+    }
+  }
+}

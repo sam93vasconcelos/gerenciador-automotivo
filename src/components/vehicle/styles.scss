@@ -17,3 +17,16 @@
     background: #eee;
   }
 }
+
+
+@media (max-width: 640px) {
+  h2 {
+    text-align: center;
+  }
+  
+  .vehicle-card {
+    display: block;
+    
+    text-align: center;
+  }
+}
