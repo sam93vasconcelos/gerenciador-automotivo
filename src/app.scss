@@ -1,0 +1,82 @@
+* {
+  font-family: sans-serif;
+}
+
+html, body, #root {
+  height: 100%;
+  background: #444;
+  color: #ddd;
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.text-center { text-align: center; }
+
+.btn {
+  border: none;
+
+  padding: 5px 10px;
+  margin: 20px;
+
+  cursor: pointer;
+
+  transition: .3s;
+
+  text-decoration: none;
+  font-size: 18px;
+  border-radius: 5px;
+  font-weight: 700;
+}
+
+.btn-green {
+  background: #4d4;
+  color: #fff;
+  
+  &:hover {
+    box-shadow: 0 0 5px #4d4, 0 0 15px #4d4, 0 0 25px #4d4, 0 0 35px #4d4;
+  }
+}
+
+.btn-red {
+  background: #d44;
+  color: #fff;
+  
+  &:hover {
+    box-shadow: 0 0 5px #d44, 0 0 15px #d44, 0 0 25px #d44, 0 0 35px #d44;
+  }
+}
+
+input {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 2px 20px;
+
+  border-radius: 10px;
+  font-size: 18px;
+
+  &:active, &:focus {
+    outline: none;
+
+    border: solid 2px #48d;
+  }
+}
+
+.validation-fail {
+  animation: blink-validation 1s;
+  animation-fill-mode: backwards;
+  animation-iteration-count: infinite;
+}
+
+@keyframes blink-validation {
+  from {
+    border: solid 4px #444;
+  }
+  to {
+    border: solid 4px #d44;
+  }
+}

@@ -1,0 +1,25 @@
+form {
+  width: 65%;
+  margin: 0 auto;
+
+  background: #555;
+  padding: 10px;
+
+  border-radius: 5px;
+  margin-top: 10px;
+
+  box-shadow: 2px 2px 5px #777 inset, 2px 2px 5px #222;
+
+  h2 {
+    text-align: center;
+  }
+
+  section.inputs {
+    display: flex;
+    column-gap: 10px;
+  }
+
+  button.btn {
+    margin-right: 5px;
+  }
+}
