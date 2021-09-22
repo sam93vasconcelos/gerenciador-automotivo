@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import ReactLoading from 'react-loading';
+import http from '../../services/http';
 
 import './styles.scss';
 
@@ -78,7 +79,7 @@ function Home() {
     setPlate(event.target.value)
   }
 
-  function saveVehicle(event) {
+  async function saveVehicle(event) {
     event.preventDefault();
 
     if(!validate()) {
@@ -87,10 +88,15 @@ function Home() {
 
     setSaving(true)
 
-    setTimeout(() => {
-      toast.success('Salvo com sucesso')
-      setSaving(false)
-    }, 1000);
+    try {
+      await http.post('vehicles', { name, year, plate })
+      toast.success('Veículo salvo')
+    } catch (error) {
+      console.log(error)
+      toast.error('Erro ao salvar veículo')
+    }
+
+    setSaving(false)
   }
 
   return (

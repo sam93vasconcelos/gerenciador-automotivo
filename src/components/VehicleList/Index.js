@@ -1,10 +1,24 @@
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import http from '../../services/http'
 
 import './styles.scss'
 
 import Vehicle from '../vehicle/Index'
 
 function VehicleList() {
+  const [vehicles, setVehicles] = useState([])
+
+  useEffect(() => {
+    getVehicles()
+  }, [])
+
+  async function getVehicles() {
+    let { data } = await http.get('vehicles')
+
+    setVehicles(data)
+  }
+
   return (
     <div>
       <Link to="/novo-veiculo" className="btn btn-green">Novo Veículo</Link>
@@ -14,11 +28,14 @@ function VehicleList() {
       <h2>Seus Veículos</h2>
 
       <div className="vehicle-container">
-        <Vehicle
-          name="Sandero"
-          year="2010/2011"
-          plate="HTV-6568"
-        />
+        { vehicles.map(vehicle => 
+          <Vehicle
+            key={ vehicle.id }
+            name={ vehicle.name }
+            year={ vehicle.year }
+            plate={ vehicle.plate }
+          />
+        ) }
       </div>
     </div>
   )
