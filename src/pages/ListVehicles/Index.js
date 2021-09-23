@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import http from '../../services/http'
 
 import './styles.scss'
 
-import Vehicle from '../vehicle/Index'
+import Vehicle from '../../components/vehicle/Index'
 
 function VehicleList() {
+  const history = useHistory()
   const [vehicles, setVehicles] = useState([])
 
   useEffect(() => {
@@ -17,6 +18,10 @@ function VehicleList() {
     let { data } = await http.get('vehicles')
 
     setVehicles(data)
+  }
+
+  function showVehicle(id) {
+    history.push(`/detalhes-veiculo/${id}`)
   }
 
   return (
@@ -31,9 +36,11 @@ function VehicleList() {
         { vehicles.map(vehicle => 
           <Vehicle
             key={ vehicle.id }
+            id={ vehicle.id }
             name={ vehicle.name }
             year={ vehicle.year }
             plate={ vehicle.plate }
+            showVehicle={ showVehicle }
           />
         ) }
       </div>

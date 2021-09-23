@@ -1,11 +1,11 @@
 import './styles.scss';
 
 function Vehicle(props) {
-  const { name, year, plate } = props;
+  const { id, name, year, plate, showVehicle } = props;
 
 
   return (
-    <div className="vehicle-card">
+    <div onClick={ () => showVehicle(id) } className="vehicle-card">
       <h3>{ name }</h3>
       <h4>{ year }</h4>
       <p>{ plate }</p>

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import VehicleList from '../components/VehicleList/Index';
+import VehicleList from './ListVehicles/Index';
 
 function Home() {
   useEffect(() => {
