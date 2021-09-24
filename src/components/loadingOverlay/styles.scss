@@ -1,0 +1,14 @@
+.loading-container {
+  position: fixed;
+  width: 120%;
+  height: 120%;
+  margin: -10%;
+  padding: -10%;
+  z-index: 9999;
+
+  background: #22222277;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

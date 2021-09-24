@@ -5,6 +5,7 @@ import http from '../../services/http'
 import './styles.scss'
 
 import Vehicle from '../../components/vehicle/Index'
+import LoadingOverlay from '../../components/loadingOverlay/Index';
 
 function VehicleList() {
   const history = useHistory()
@@ -26,6 +27,8 @@ function VehicleList() {
 
   return (
     <div>
+      { vehicles.length > 0 ? '' : <LoadingOverlay /> }
+
       <Link to="/novo-veiculo" className="btn btn-green">Novo Veículo</Link>
 
       <hr />

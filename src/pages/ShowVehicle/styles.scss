@@ -1,0 +1,17 @@
+.show-vehicles-container {
+  margin: 30px auto;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  
+  span.vehicle-detail {
+    padding: 5px 15px;
+
+    box-shadow: -2px -2px 5px #555, 2px 2px 5px #222;
+  }
+}
+
+span.without-details {
+  text-align: center;
+  font-size: 18px;
+}

@@ -5,6 +5,8 @@
 html, body, #root {
   background: #444;
   color: #ddd;
+  margin: 0;
+  padding: 0;
 }
 
 .container {
@@ -45,6 +47,15 @@ html, body, #root {
   
   &:hover {
     box-shadow: 0 0 5px #d44, 0 0 15px #d44, 0 0 25px #d44, 0 0 35px #d44;
+  }
+}
+
+.btn-blue {
+  background: #48e;
+  color: #fff;
+  
+  &:hover {
+    box-shadow: 0 0 5px #48e, 0 0 15px #48e, 0 0 25px #48e, 0 0 35px #48e;
   }
 }
 
