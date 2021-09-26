@@ -107,7 +107,7 @@ function Home() {
 
       <hr />
 
-      <form onSubmit={ saveVehicle }>
+      <form className="form-vehicle" onSubmit={ saveVehicle }>
         <h2>Novo Veículo</h2>
         <section className="inputs">        
           <input 

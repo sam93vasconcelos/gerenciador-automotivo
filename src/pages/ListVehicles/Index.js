@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import http from '../../services/http'
+import { toast } from 'react-hot-toast'
 
 import './styles.scss'
 
@@ -10,15 +11,25 @@ import LoadingOverlay from '../../components/loadingOverlay/Index';
 function VehicleList() {
   const history = useHistory()
   const [vehicles, setVehicles] = useState([])
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     getVehicles()
   }, [])
 
   async function getVehicles() {
-    let { data } = await http.get('vehicles')
+    setLoading(true)
+    try {
+      let { data } = await http.get('vehicles')
+      setVehicles(data)
+    } catch (e) {
+      // if(e.response.status === 401) {
+      //   history.push('/login')
+      // }
+      console.log(e)
+    }
 
-    setVehicles(data)
+    setLoading(false)
   }
 
   function showVehicle(id) {
@@ -27,7 +38,7 @@ function VehicleList() {
 
   return (
     <div>
-      { vehicles.length > 0 ? '' : <LoadingOverlay /> }
+      { !loading ? '' : <LoadingOverlay /> }
 
       <Link to="/novo-veiculo" className="btn btn-green">Novo Veículo</Link>
 
@@ -36,7 +47,7 @@ function VehicleList() {
       <h2>Seus Veículos</h2>
 
       <div className="vehicle-container">
-        { vehicles.map(vehicle => 
+        { vehicles.map(vehicle =>
           <Vehicle
             key={ vehicle.id }
             id={ vehicle.id }
