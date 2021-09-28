@@ -92,7 +92,6 @@ function Home() {
       await http.post('vehicles', { name, year, plate })
       toast.success('Veículo salvo')
     } catch (error) {
-      console.log(error)
       toast.error('Erro ao salvar veículo')
     }
 
@@ -109,38 +108,38 @@ function Home() {
 
       <form className="form-vehicle" onSubmit={ saveVehicle }>
         <h2>Novo Veículo</h2>
-        <section className="inputs">        
-          <input 
-            autoFocus 
-            type="text" 
-            placeholder="Nome" 
+        <section className="inputs">
+          <input
+            autoFocus
+            type="text"
+            placeholder="Nome"
             value={ name }
             onChange={ handleNameInput }
             id="name"
           />
-          <input 
-            type="text" 
-            placeholder="Ano" 
+          <input
+            type="text"
+            placeholder="Ano"
             value={ year }
             onChange={ handleYearInput }
             id="year"
           />
-          <input 
-            type="text" 
-            placeholder="Placa" 
+          <input
+            type="text"
+            placeholder="Placa"
             value={ plate }
             onChange={ handlePlateInput }
             id="plate"
           />
 
         </section>
-        
+
         {
           saving ? (
             <ReactLoading type={'bubbles'} />
           ) : (
             <section className="buttons">
-              <button 
+              <button
                 className="btn btn-green"
               >
                 Salvar
@@ -152,11 +151,11 @@ function Home() {
 
       </form>
 
-      { name || year || plate ? 
+      { name || year || plate ?
         (
           <>
             <hr />
-            <Vehicle 
+            <Vehicle
               name={ name }
               year={ year }
               plate={ plate }

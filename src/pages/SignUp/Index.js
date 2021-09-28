@@ -3,15 +3,17 @@ import { Link } from 'react-router-dom'
 import { MdAccountCircle } from 'react-icons/md'
 import { GiPadlock } from 'react-icons/gi'
 import { BiShow, BiHide } from 'react-icons/bi'
+import { HiOutlineMail } from 'react-icons/hi'
 import './styles.scss'
 
 import http from '../../services/http'
-import { setToken } from '../../services/auth'
+import { signUp } from '../../services/auth'
 
 import carImg from '../../assets/car.png'
 
 function Login() {
   const [showing, setShowing] = useState(false)
+  const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -19,15 +21,10 @@ function Login() {
     setShowing(status)
   }
 
-  async function handleLogin(e) {
+  async function handleSignUp(e) {
     e.preventDefault()
 
-    const { data } = await http.post(`/login`, {
-      email,
-      password
-    })
-
-    setToken(data.token)
+    await signUp(name, email, password)
   }
 
   return (
@@ -38,13 +35,23 @@ function Login() {
       </div>
 
       <div className="form-container">
-        <h2>Login</h2>
+        <h2>Criar conta</h2>
 
 
-        <form onSubmit={ handleLogin }>
+        <form onSubmit={ handleSignUp }>
 
           <div className="form-group">
             <MdAccountCircle size={ 25 } />
+            <input
+              type="text"
+              placeholder="Seu nome"
+              onChange={ (e) => setName(e.target.value) }
+              value={ name }
+            />
+          </div>
+
+          <div className="form-group">
+            <HiOutlineMail size={ 25 } />
             <input
               type="text"
               placeholder="email"
@@ -68,9 +75,9 @@ function Login() {
             ) }
 
           </div>
-          <button className="btn btn-green">Entrar</button>
+          <button className="btn btn-green">Criar</button>
 
-          <p>Não tem uma conta? Clique <Link to="/sign-up">aqui</Link> para criar!</p>
+          <p>Já tem uma conta? Clique <Link to="/login">aqui</Link> para entrar!</p>
 
         </form>
       </div>
