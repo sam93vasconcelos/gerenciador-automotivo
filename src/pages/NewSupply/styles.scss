@@ -1,0 +1,17 @@
+.new-supply-container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 10px;
+  background: #656565;
+  border-radius: 10px;
+  box-shadow: -2px -2px 5px #888, 2px 2px 5px #222;
+  left: -100%;
+  transition: 0.2s;
+}
+
+.show-container {
+  left: 20px;
+}

@@ -2,7 +2,9 @@
   font-family: sans-serif;
 }
 
-html, body, #root {
+html,
+body,
+#root {
   background: #444;
   color: #ddd;
   margin: 0;
@@ -14,7 +16,9 @@ html, body, #root {
   margin: 0 auto;
 }
 
-.text-center { text-align: center; }
+.text-center {
+  text-align: center;
+}
 
 .btn {
   border: none;
@@ -24,7 +28,7 @@ html, body, #root {
 
   cursor: pointer;
 
-  transition: .3s;
+  transition: 0.3s;
 
   text-decoration: none;
   font-size: 18px;
@@ -35,7 +39,7 @@ html, body, #root {
 .btn-green {
   background: #4d4;
   color: #fff;
-  
+
   &:hover {
     box-shadow: 0 0 5px #4d4, 0 0 15px #4d4, 0 0 25px #4d4, 0 0 35px #4d4;
   }
@@ -44,7 +48,7 @@ html, body, #root {
 .btn-red {
   background: #d44;
   color: #fff;
-  
+
   &:hover {
     box-shadow: 0 0 5px #d44, 0 0 15px #d44, 0 0 25px #d44, 0 0 35px #d44;
   }
@@ -53,13 +57,14 @@ html, body, #root {
 .btn-blue {
   background: #48e;
   color: #fff;
-  
+
   &:hover {
     box-shadow: 0 0 5px #48e, 0 0 15px #48e, 0 0 25px #48e, 0 0 35px #48e;
   }
 }
 
-input {
+input,
+select {
   box-sizing: border-box;
   display: block;
   width: 100%;
@@ -69,7 +74,8 @@ input {
   border-radius: 10px;
   font-size: 18px;
 
-  &:active, &:focus {
+  &:active,
+  &:focus {
     outline: none;
 
     border: solid 2px #48d;
@@ -95,11 +101,20 @@ input {
   cursor: pointer;
 }
 
-
 @media (max-width: 640px) {
-  h1 { font-size: 24px; }
-  h2 { font-size: 20px; }
-  h3 { font-size: 18px; }
-  h4 { font-size: 16px; }
-  h5 { font-size: 14px; }
+  h1 {
+    font-size: 24px;
+  }
+  h2 {
+    font-size: 20px;
+  }
+  h3 {
+    font-size: 18px;
+  }
+  h4 {
+    font-size: 16px;
+  }
+  h5 {
+    font-size: 14px;
+  }
 }

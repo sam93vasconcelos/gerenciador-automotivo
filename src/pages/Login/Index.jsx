@@ -4,6 +4,7 @@ import { MdAccountCircle } from "react-icons/md";
 import { GiPadlock } from "react-icons/gi";
 import { BiShow, BiHide } from "react-icons/bi";
 import { toast } from "react-hot-toast";
+import ReactLoading from "react-loading";
 import "./styles.scss";
 
 import http from "../../services/http";
@@ -18,12 +19,16 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const [loading, setLoading] = useState(false);
+
   function handleShowPassword(status) {
     setShowing(status);
   }
 
   async function handleLogin(e) {
     e.preventDefault();
+
+    setLoading(true);
 
     try {
       const { data } = await http.post(`/login`, {
@@ -37,6 +42,8 @@ function Login() {
       console.log(e);
       toast.error("Erro!");
     }
+
+    setLoading(false);
   }
 
   return (
@@ -82,7 +89,12 @@ function Login() {
               />
             )}
           </div>
-          <button className="btn btn-green">Entrar</button>
+
+          {loading ? (
+            <ReactLoading type={"bubbles"} />
+          ) : (
+            <button className="btn btn-green">Entrar</button>
+          )}
 
           <p>
             Não tem uma conta? Clique <Link to="/sign-up">aqui</Link> para
