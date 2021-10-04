@@ -1,0 +1,21 @@
+.update-vehicle-card {
+  display: flex;
+  justify-content: center;
+  
+  div {
+    background: #777;
+    position: absolute;
+    border-radius: 5px;
+    box-shadow: -1px -1px 5px #888, 2px 2px 5px #222;
+    padding: 10px;
+    max-width: 90%;
+    width: 400px;
+    top: -100%;
+
+    transition: .2s;
+  }
+}
+
+.show {
+  top: 20px!important;
+}
