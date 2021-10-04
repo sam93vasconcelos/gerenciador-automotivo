@@ -7,7 +7,7 @@ import LogoutButton from "./components/logoutButton/Index";
 import "./app.scss";
 
 import Home from "./pages/Home";
-import Login from "./pages/Login/Index.jsx";
+import Login from "./pages/Login/Index.js";
 import SignUp from "./pages/SignUp/Index.js";
 import NewVehicle from "./pages/NewVehicle/NewVehicle";
 import ShowVehicle from "./pages/ShowVehicle/Index";

@@ -31,12 +31,12 @@ function Login() {
     setLoading(true);
 
     try {
-      const { data } = await http.post(`/login`, {
+      const { data } = await http.post(`auth/login`, {
         email,
         password,
       });
 
-      setToken(data.token);
+      setToken(data.access_token);
       history.push("/");
     } catch (e) {
       console.log(e);
