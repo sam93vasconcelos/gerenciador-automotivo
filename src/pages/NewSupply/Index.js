@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
+import toast from "react-hot-toast";
+import http from '../../services/http';
+
 import "./styles.scss";
 
 function NewSupply({ fn }) {
+  const [km, setKm] = useState('');
+  const [price, setPrice] = useState('');
+  const [liters, setLiters] = useState('');
+  const [total, setTotal] = useState('');
+  const [date, setDate] = useState(new Date().toISOString().slice(0,10));
+
   fn.handleAddSupply = () => {
     document.getElementById("supply-container").classList.add("show-container");
   };
@@ -12,29 +21,70 @@ function NewSupply({ fn }) {
       .classList.remove("show-container");
   }
 
+  async function saveSupply(e) {
+    e.preventDefault();
+
+    try {
+      await http.post('supplies', {
+        km,
+        price,
+        liters,
+        total,
+        date,
+        vehicle_id: 4
+      });
+      toast.success('Salvo!');
+      handleCancelSupply();
+    } catch (error) {
+      console.log(error);
+      toast.error('Erro ao salvar');
+    }
+  }
+
   return (
     <div id="supply-container" className="new-supply-container">
       <div>
         <h3>Adicionar abastecimento</h3>
 
-        <input type="text" placeholder="KM" />
-        <input type="text" placeholder="Preço Litro/m³" />
-        <input type="text" placeholder="Litros/m³" />
-        <input type="text" placeholder="Total" />
-        <select defaultValue="0">
-          <option value="0" disabled>
-            Selecione
-          </option>
-          <option value="1">Gasolina</option>
-          <option value="2">Etanol</option>
-          <option value="3">GNV</option>
-          <option value="4">Diesel</option>
-        </select>
+        <form onSubmit={ saveSupply }>
 
-        <button className="btn btn-green">Salvar</button>
-        <button onClick={handleCancelSupply} className="btn btn-red">
-          Cancelar
-        </button>
+          <input 
+            type="text" 
+            placeholder="KM"
+            value={km}
+            onChange={ (e) => setKm(e.target.value) }
+          />
+          <input 
+            type="text" 
+            placeholder="Preço Litro"
+            value={price}
+            onChange={ (e) => setPrice(e.target.value) }
+          />
+          <input 
+            type="text" 
+            placeholder="Litros"
+            value={liters}
+            onChange={ (e) => setLiters(e.target.value) }
+          />
+          <input 
+            type="text" 
+            placeholder="Total"
+            value={total}
+            onChange={ (e) => setTotal(e.target.value) }
+          />
+          <input 
+            type="date" 
+            placeholder="Date"
+            value={date}
+            onChange={ (e) => setDate(e.target.value) }
+          />
+
+          <button type="submit" className="btn btn-green">Salvar</button>
+          <button type="button" onClick={handleCancelSupply} className="btn btn-red">
+            Cancelar
+          </button>
+
+        </form>
       </div>
     </div>
   );
