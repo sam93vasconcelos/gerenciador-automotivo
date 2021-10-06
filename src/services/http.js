@@ -15,13 +15,6 @@ http.interceptors.request.use(
 		return config;
 	},
 	(error) => {
-		if (error.response.status === 401) {
-			toast.error('Você não está autenticado!');
-			history.push('/login');
-			// window.location.reload();
-		} else {
-			toast.error('Erro!');
-		}
 		return Promise.reject(error);
 	}
 );
@@ -35,9 +28,9 @@ http.interceptors.response.use(
 		if (error.response.status === 401) {
 			toast.error('Você não está autenticado!');
 			history.push('/login');
-			// window.location.reload();
-		} else {
-			toast.error('Erro!');
+		} else if(error.response.status === 403) {
+			toast.error('Não autorizado');
+			history.push('/');
 		}
 		return Promise.reject(error);
 	}

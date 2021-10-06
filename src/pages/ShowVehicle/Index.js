@@ -48,7 +48,7 @@ function ShowVehicle(props) {
 
 	return (
 		<div>
-			{vehicle && !loading ? '' : <LoadingOverlay />}
+			{!loading ? '' : <LoadingOverlay />}
 
 			<div className="container">
 				<NewSupply fn={fn} />
