@@ -5,6 +5,7 @@ import LoadingOverlay from '../../components/loadingOverlay/Index';
 import { Link } from 'react-router-dom';
 import NewSupply from '../NewSupply/Index';
 import UpdateVehicle from '../UpdateVehicle/Index';
+import ShowSupplies from '../ShowSupplies/Index';
 
 import './styles.scss';
 import toast from 'react-hot-toast';
@@ -94,7 +95,7 @@ function ShowVehicle(props) {
 
 				<hr />
 
-				<span className="without-details">🙁 Nenhum detalhe por enquanto</span>
+				<ShowSupplies supplies={ vehicle?.supplies } />
 			</div>
 		</div>
 	);

@@ -1,0 +1,20 @@
+table {
+  width: 100%;
+
+  border-spacing:0;
+  border-collapse: collapse; 
+
+  background: #555;
+
+  thead {
+    th {
+      font-weight: bold;
+    }
+  }
+}
+
+td, th {
+  border: solid 2px #dddddd88;
+  padding: 5px;
+  text-align: center;
+}
