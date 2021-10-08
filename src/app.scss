@@ -118,3 +118,19 @@ select {
     font-size: 14px;
   }
 }
+
+.mx-1 {
+  margin: 0 5px;
+}
+
+tr:hover {
+  background: #777;
+}
+
+@media (max-width: 375px) {
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}

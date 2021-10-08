@@ -13,6 +13,7 @@ import history from '../../services/history';
 
 function ShowVehicle(props) {
 	const [ vehicle, setVehicle ] = useState();
+	const [ supplies, setSupplies ] = useState([]);
 	const [ loading, setLoading ] = useState(false);
 	const { id } = props.match.params;
 
@@ -24,6 +25,7 @@ function ShowVehicle(props) {
 		let { data } = await http.get(`/vehicles/${id}`);
 
 		setVehicle(data);
+		setSupplies(data.supplies);
 	}
 
 	const fn = {};
@@ -31,6 +33,10 @@ function ShowVehicle(props) {
 	function handleUpdatedVehicle(vehicle) {
     setVehicle(vehicle);
   }
+
+	function addSupplyToArray(supply) {
+		setSupplies([...supplies,supply]);
+	}
 
 	async function deleteVehicle() {
 		if(window.confirm('Tem certeza que deseja excluir este veículo e todos os seus movimentos? Esta ação não pode ser desfeita')) {
@@ -52,7 +58,7 @@ function ShowVehicle(props) {
 			{!loading ? '' : <LoadingOverlay />}
 
 			<div className="container">
-				<NewSupply fn={fn} />
+				<NewSupply addSupplyToArray={addSupplyToArray} vehicle_id={vehicle?.id} fn={fn} />
 
 				<UpdateVehicle 
 					handleUpdatedVehicle={ handleUpdatedVehicle } 
@@ -95,7 +101,7 @@ function ShowVehicle(props) {
 
 				<hr />
 
-				<ShowSupplies supplies={ vehicle?.supplies } />
+				<ShowSupplies supplies={ supplies } />
 			</div>
 		</div>
 	);

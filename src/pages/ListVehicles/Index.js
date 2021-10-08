@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import http from "../../services/http";
-import { toast } from "react-hot-toast";
 
 import "./styles.scss";
 

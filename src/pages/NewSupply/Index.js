@@ -4,7 +4,7 @@ import http from '../../services/http';
 
 import "./styles.scss";
 
-function NewSupply({ fn }) {
+function NewSupply({ fn, addSupplyToArray, vehicle_id }) {
   const [km, setKm] = useState('');
   const [price, setPrice] = useState('');
   const [liters, setLiters] = useState('');
@@ -25,15 +25,16 @@ function NewSupply({ fn }) {
     e.preventDefault();
 
     try {
-      await http.post('supplies', {
+      let { data } = await http.post('supplies', {
         km,
         price,
         liters,
         total,
         date,
-        vehicle_id: 4
+        vehicle_id
       });
       toast.success('Salvo!');
+      addSupplyToArray(data);
       handleCancelSupply();
     } catch (error) {
       console.log(error);
