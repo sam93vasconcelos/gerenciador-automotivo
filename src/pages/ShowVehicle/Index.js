@@ -105,7 +105,7 @@ function ShowVehicle(props) {
 					Voltar
 				</Link>
 				<span onClick={() => fn.handleAddSupply()} to={`/adicionar-abastecimento/${id}`} className="btn btn-green">
-					+ Abastecimento
+					<strong>+ Abastecimento</strong>
 				</span>
 
 				<hr />
