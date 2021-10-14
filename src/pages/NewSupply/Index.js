@@ -15,10 +15,15 @@ function NewSupply({ fn, addSupplyToArray, vehicle_id }) {
     document.getElementById("supply-container").classList.add("show-container");
   };
 
-  function handleCancelSupply() {
+  function handleHideSupply() {
     document
       .getElementById("supply-container")
       .classList.remove("show-container");
+
+    setKm('');
+    setPrice('');
+    setLiters('');
+    setTotal('');
   }
 
   async function saveSupply(e) {
@@ -35,11 +40,19 @@ function NewSupply({ fn, addSupplyToArray, vehicle_id }) {
       });
       toast.success('Salvo!');
       addSupplyToArray(data);
-      handleCancelSupply();
+      handleHideSupply();
     } catch (error) {
       console.log(error);
       toast.error('Erro ao salvar');
     }
+  }
+
+  function handleLitersChange(e) {
+    let { value } = e.target;
+    setLiters(value);
+    
+    let result = price * value;
+    setTotal(result.toFixed(2));
   }
 
   return (
@@ -65,7 +78,7 @@ function NewSupply({ fn, addSupplyToArray, vehicle_id }) {
             type="text" 
             placeholder="Litros"
             value={liters}
-            onChange={ (e) => setLiters(e.target.value) }
+            onChange={ handleLitersChange }
           />
           <input 
             type="text" 
@@ -81,7 +94,7 @@ function NewSupply({ fn, addSupplyToArray, vehicle_id }) {
           />
 
           <button type="submit" className="btn btn-green">Salvar</button>
-          <button type="button" onClick={handleCancelSupply} className="btn btn-red">
+          <button type="button" onClick={handleHideSupply} className="btn btn-red">
             Cancelar
           </button>
 

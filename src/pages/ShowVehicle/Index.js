@@ -22,10 +22,19 @@ function ShowVehicle(props) {
 	}, []);
 
 	async function getVehicle() {
-		let { data } = await http.get(`/vehicles/${id}`);
+		setLoading(true);
 
-		setVehicle(data);
-		setSupplies(data.supplies);
+		try {
+			let { data } = await http.get(`/vehicles/${id}`);
+
+			setVehicle(data);
+			setSupplies(data.supplies);
+		} catch (error) {
+			console.log(error);
+			toast.error('Erro ao carregar veículo');
+		}
+
+		setLoading(false);
 	}
 
 	const fn = {};

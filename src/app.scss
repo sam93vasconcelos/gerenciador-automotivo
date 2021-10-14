@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
 * {
-  font-family: sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 html,
@@ -69,10 +71,14 @@ select {
   display: block;
   width: 100%;
   margin: 0;
-  padding: 2px 20px;
+  padding: 10px 20px;
 
-  border-radius: 10px;
+  border-radius: 2px;
+  border: solid 2px transparent;
   font-size: 18px;
+
+  margin-bottom: 5px;
+  color: #444;
 
   &:active,
   &:focus {
@@ -90,10 +96,10 @@ select {
 
 @keyframes blink-validation {
   from {
-    border: solid 4px #444;
+    border: solid 2px #444;
   }
   to {
-    border: solid 4px #d44;
+    border: solid 2px #d44;
   }
 }
 
@@ -123,7 +129,15 @@ select {
   margin: 0 5px;
 }
 
-tr:hover {
+table tbody tr:nth-child(even) {
+  background: #444;
+}
+
+table tbody tr:nth-child(even):hover {
+  background: #777;
+}
+
+table tbody tr:hover {
   background: #777;
 }
 
@@ -133,4 +147,8 @@ tr:hover {
     overflow-x: auto;
     white-space: nowrap;
   }
+}
+
+table thead tr {
+  background: #222;
 }

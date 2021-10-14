@@ -1,5 +1,6 @@
 form.form-vehicle {
-  width: 65%;
+  width: 400px;
+  max-width: 90%;
   margin: 0 auto;
 
   background: #555;
@@ -12,11 +13,6 @@ form.form-vehicle {
 
   h2 {
     text-align: center;
-  }
-
-  section.inputs {
-    display: flex;
-    column-gap: 10px;
   }
 
   button.btn {
