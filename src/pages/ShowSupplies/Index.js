@@ -1,13 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import moment from 'moment';
 import currency from 'currency.js';
 import { FaPencilAlt, FaTrashAlt } from 'react-icons/fa';
 import http from '../../services/http';
 
+import Modal from 'react-modal';
+
 import './styles.scss';
 import toast from 'react-hot-toast';
 
 function ShowSupplies(props) {
+  const customStyles = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+      color: 'black',
+      width: '80%',
+      backgroundColor: 'white',
+    },
+  };
+  Modal.setAppElement('#root');
+  const [open, setOpen] = useState(true);
   const {supplies, getVehicle} = props;
 
   function media(supply, index) {
@@ -36,10 +53,20 @@ function ShowSupplies(props) {
   function handleUpdate(event) {
     event.stopPropagation();
 
-    alert('update')
+    setOpen(true);
   }
 
   return <>
+      <Modal
+        isOpen={open}
+        onAfterOpen={() => {}}
+        onRequestClose={() => {setOpen(false)}}
+        contentLabel="Example Modal"
+        className="Modal"
+        overlayClassName="Overlay"
+      >
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum facere cupiditate praesentium at earum eius rerum nulla vitae reiciendis ea? Aut dolorem fuga sequi dicta expedita eveniet nam iusto doloremque!
+      </Modal>
     {supplies.length < 1 ? (
       <span className="without-details">🙁 Nenhum detalhe por enquanto</span>
     ) : (
