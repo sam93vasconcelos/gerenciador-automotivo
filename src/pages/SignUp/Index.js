@@ -4,7 +4,7 @@ import { MdAccountCircle } from 'react-icons/md';
 import { GiPadlock } from 'react-icons/gi';
 import { BiShow, BiHide } from 'react-icons/bi';
 import { HiOutlineMail } from 'react-icons/hi';
-import './styles.scss';
+import '../Login/styles.scss';
 
 import { signUp } from '../../services/auth';
 
@@ -27,7 +27,7 @@ function SignUp() {
 	}
 
 	return (
-		<div className="signup-container">
+		<div className="login-container">
 			<div>
 				<h1>Gerenciador Automotivo</h1>
 				<img src={carImg} alt="Car Img" />
@@ -44,7 +44,7 @@ function SignUp() {
 
 					<div className="form-group">
 						<HiOutlineMail size={25} />
-						<input type="text" placeholder="email" onChange={(e) => setEmail(e.target.value)} value={email} />
+						<input type="email" placeholder="email" onChange={(e) => setEmail(e.target.value)} value={email} />
 					</div>
 
 					<div className="form-group">
@@ -61,6 +61,7 @@ function SignUp() {
 							<BiHide onClick={() => handleShowPassword(true)} className="cursor-pointer" size={25} />
 						)}
 					</div>
+					<hr />
 					<button className="btn btn-green">Criar</button>
 
 					<p>

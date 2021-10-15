@@ -12,6 +12,7 @@ async function signUp(name, email, password) {
 		});
 
 		history.push('/login');
+		toast.success('Usuário criado!');
 	} catch (e) {
 		console.log(e);
 		toast.error('Erro ao criar conta');
