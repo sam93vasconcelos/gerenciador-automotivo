@@ -27,7 +27,7 @@ function SignUp() {
 	}
 
 	return (
-		<div className="login-container">
+		<div className="signup-container">
 			<div>
 				<h1>Gerenciador Automotivo</h1>
 				<img src={carImg} alt="Car Img" />

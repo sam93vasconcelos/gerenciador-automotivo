@@ -117,7 +117,6 @@ function UpdateVehicle({vehicle, fn, handleUpdatedVehicle}) {
         <form onSubmit={ saveVehicle }>
           <section className="inputs">
             <input
-              autoFocus
               type="text"
               placeholder="Nome"
               value={ name }

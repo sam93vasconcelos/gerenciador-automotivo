@@ -60,7 +60,7 @@ function Login() {
           <div className="form-group">
             <MdAccountCircle size={30} />
             <input
-              type="text"
+              type="email"
               placeholder="email"
               onChange={(e) => setEmail(e.target.value)}
               value={email}

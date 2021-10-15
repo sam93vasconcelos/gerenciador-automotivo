@@ -74,9 +74,9 @@ function ShowVehicle(props) {
 				/>
 				
 				<h1 className="text-center vehicle-actions">
-					<span>Detalhes |</span>
 					<span>{vehicle?.name}</span>
-					<FaPencilAlt
+					<div>
+						<FaPencilAlt
 						size={25} 
 						color="#dd5" 
 						onClick={() => fn.handleShow(true)}
@@ -88,6 +88,8 @@ function ShowVehicle(props) {
 						onClick={deleteVehicle}
 						className="cursor-pointer"
 					/>
+					</div>
+					
 				</h1>
 
 				<section className="show-vehicles-container">

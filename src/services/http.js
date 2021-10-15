@@ -5,7 +5,7 @@ import { getToken } from './auth';
 import history from './history';
 
 const http = axios.create({
-	baseURL: 'http://localhost:8000/api/'
+	baseURL: 'http://192.168.7.114:8000/api/'
 });
 
 http.interceptors.request.use(

@@ -21,4 +21,15 @@ span.without-details {
   gap: 10px;
   justify-content: center;
   align-items: center;
+
+  div {
+    display: flex;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .vehicle-actions {
+    flex-direction: column;
+  }
 }
