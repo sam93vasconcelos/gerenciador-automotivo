@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import http from '../../services/http';
 import { FaPencilAlt, FaTrashAlt } from 'react-icons/fa';
-import LoadingOverlay from '../../components/loadingOverlay/Index';
 import { Link } from 'react-router-dom';
 import NewSupply from '../NewSupply/Index';
 import UpdateVehicle from '../UpdateVehicle/Index';
@@ -10,12 +9,13 @@ import ShowSupplies from '../ShowSupplies/Index';
 import './styles.scss';
 import toast from 'react-hot-toast';
 import history from '../../services/history';
+import useLoading from '../../hooks/useLoading';
 
 function ShowVehicle(props) {
 	const [ vehicle, setVehicle ] = useState();
 	const [ supplies, setSupplies ] = useState([]);
-	const [ loading, setLoading ] = useState(false);
 	const { id } = props.match.params;
+	const { setLoading } = useLoading();
 
 	useEffect(() => {
 		getVehicle()
@@ -64,8 +64,6 @@ function ShowVehicle(props) {
 
 	return (
 		<div>
-			{!loading ? '' : <LoadingOverlay />}
-
 			<div className="container">
 				<NewSupply addSupplyToArray={addSupplyToArray} vehicle_id={vehicle?.id} fn={fn} />
 

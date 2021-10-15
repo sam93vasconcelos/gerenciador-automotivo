@@ -11,21 +11,26 @@ import Login from "./pages/Login/Index.js";
 import SignUp from "./pages/SignUp/Index.js";
 import NewVehicle from "./pages/NewVehicle/NewVehicle";
 import ShowVehicle from "./pages/ShowVehicle/Index";
+import LoadingContext from './contexts/LoadingContext';
+import GlobalLoading from "./components/GlobalLoading/Index";
 
 function App() {
   return (
     <>
       <Toaster />
       <LogoutButton />
-      <Router history={history}>
-        <Switch>
-          <Route component={Home} path="/" exact />
-          <Route component={Login} path="/login" />
-          <Route component={SignUp} path="/sign-up" />
-          <Route component={NewVehicle} path="/novo-veiculo" />
-          <Route component={ShowVehicle} path="/detalhes-veiculo/:id" />
-        </Switch>
-      </Router>
+      <LoadingContext>
+        <GlobalLoading />
+        <Router history={history}>
+          <Switch>
+            <Route component={Home} path="/" exact />
+            <Route component={Login} path="/login" />
+            <Route component={SignUp} path="/sign-up" />
+            <Route component={NewVehicle} path="/novo-veiculo" />
+            <Route component={ShowVehicle} path="/detalhes-veiculo/:id" />
+          </Switch>
+        </Router>
+      </LoadingContext>
     </>
   );
 }
