@@ -8,23 +8,12 @@ import Modal from 'react-modal';
 
 import './styles.scss';
 import toast from 'react-hot-toast';
+import EditSupply from '../EditSupply/Index';
 
 function ShowSupplies(props) {
-  const customStyles = {
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-      color: 'black',
-      width: '80%',
-      backgroundColor: 'white',
-    },
-  };
   Modal.setAppElement('#root');
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
+  const [editingSupply, setEditingSupply] = useState({});
   const {supplies, getVehicle} = props;
 
   function media(supply, index) {
@@ -50,22 +39,27 @@ function ShowSupplies(props) {
     }
   }
 
-  function handleUpdate(event) {
+  function handleUpdate(event, supply) {
     event.stopPropagation();
-
+    
+    setEditingSupply(supply);
     setOpen(true);
+  }
+
+  function closeModal() {
+    setOpen(false)
   }
 
   return <>
       <Modal
         isOpen={open}
         onAfterOpen={() => {}}
-        onRequestClose={() => {setOpen(false)}}
+        onRequestClose={closeModal}
         contentLabel="Example Modal"
         className="Modal"
         overlayClassName="Overlay"
       >
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum facere cupiditate praesentium at earum eius rerum nulla vitae reiciendis ea? Aut dolorem fuga sequi dicta expedita eveniet nam iusto doloremque!
+        <EditSupply supply={ editingSupply } getVehicle={ getVehicle } closeModal={ closeModal } />
       </Modal>
     {supplies.length < 1 ? (
       <span className="without-details">🙁 Nenhum detalhe por enquanto</span>
@@ -84,7 +78,7 @@ function ShowSupplies(props) {
         </thead>
         <tbody>
           { supplies.map((supply, index) => (
-            <tr className="cursor-pointer" onClick={handleUpdate} key={supply?.id}>
+            <tr className="cursor-pointer" onClick={(e) => handleUpdate(e, supply)} key={supply?.id}>
               <td>{ moment(supply?.date).format("DD/MM/YYYY") }</td>
               <td>{ supply?.km }</td>
               <td>{ currency(parseFloat(supply?.price), {
@@ -104,7 +98,7 @@ function ShowSupplies(props) {
                 <FaPencilAlt 
                   className="mx-1 cursor-pointer"
                   color="#f9f956"
-                  onClick={handleUpdate}
+                  onClick={(e) => handleUpdate(e, supply)}
                 />
                 <FaTrashAlt 
                   className="mx-1 cursor-pointer"

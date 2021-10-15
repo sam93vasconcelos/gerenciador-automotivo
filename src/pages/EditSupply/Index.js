@@ -4,51 +4,30 @@ import http from '../../services/http';
 
 import "./styles.scss";
 
-function NewSupply({ fn, addSupplyToArray, vehicle_id }) {
-  const [km, setKm] = useState('');
-  const [price, setPrice] = useState('');
-  const [liters, setLiters] = useState('');
-  const [total, setTotal] = useState('');
-  const [date, setDate] = useState(new Date().toISOString().slice(0,10));
-
-  fn.handleAddSupply = () => {
-    document.getElementById("supply-container").classList.add("show-container");
-  };
-
-  function handleHideSupply() {
-    document
-      .getElementById("supply-container")
-      .classList.remove("show-container");
-
-    setKm('');
-    setPrice('');
-    setLiters('');
-    setTotal('');
-  }
+function EditSupply({ supply, getVehicle, closeModal }) {
+  const [km, setKm] = useState(supply?.km);
+  const [price, setPrice] = useState(supply?.price);
+  const [liters, setLiters] = useState(supply?.liters);
+  const [total, setTotal] = useState(supply?.total);
+  const [date, setDate] = useState(supply?.date);
 
   async function saveSupply(e) {
     e.preventDefault();
 
     try {
-      let { data } = await http.post('supplies', {
+      await http.put(`supplies/${supply.id}`, {
         km,
         price,
         liters,
         total,
         date,
-        vehicle_id
+        vehicle_id: supply.vehicle_id
       });
       toast.success('Salvo!');
-      addSupplyToArray(data);
-      handleHideSupply();
+      getVehicle();
+      closeModal();
     } catch (error) {
-      if(error.response.status === 422) {
-        Object.values(error.response.data.errors).map(err => {
-          toast.error(err);
-        });
-      } else {
-        toast.error('Erro ao salvar');
-      }
+      toast.error('Erro ao salvar');
     }
   }
 
@@ -61,42 +40,51 @@ function NewSupply({ fn, addSupplyToArray, vehicle_id }) {
   }
 
   return (
-    <div id="supply-container" className="new-supply-container">
+    <div id="supply-container" className="edit-supply-container">
       <div>
-        <h3>Adicionar abastecimento</h3>
+        <h3>Editar abastecimento</h3>
 
         <form onSubmit={ saveSupply }>
-
-          <input 
+          <label htmlFor="km">KM</label>
+          <input
             required
+            id="km"
             type="text" 
             placeholder="KM"
             value={km}
             onChange={ (e) => setKm(e.target.value) }
           />
-          <input 
+          <label htmlFor="price">Preço Litro</label>
+          <input
             required
+            id="price"
             type="text" 
             placeholder="Preço Litro"
             value={price}
             onChange={ (e) => setPrice(e.target.value) }
           />
-          <input 
+          <label htmlFor="liters">Litros</label>
+          <input
             required
+            id="liters"
             type="text" 
             placeholder="Litros"
             value={liters}
             onChange={ handleLitersChange }
           />
-          <input 
+          <label htmlFor="total">Total</label>
+          <input
             required
+            id="total"
             type="text" 
             placeholder="Total"
             value={total}
             onChange={ (e) => setTotal(e.target.value) }
           />
-          <input 
+          <label htmlFor="date">Data</label>
+          <input
             required
+            id="date"
             type="date" 
             placeholder="Date"
             value={date}
@@ -104,7 +92,7 @@ function NewSupply({ fn, addSupplyToArray, vehicle_id }) {
           />
 
           <button type="submit" className="btn btn-green">Salvar</button>
-          <button type="button" onClick={handleHideSupply} className="btn btn-red">
+          <button onClick={ closeModal } type="button" className="btn btn-red">
             Cancelar
           </button>
 
@@ -114,4 +102,4 @@ function NewSupply({ fn, addSupplyToArray, vehicle_id }) {
   );
 }
 
-export default NewSupply;
+export default EditSupply;
