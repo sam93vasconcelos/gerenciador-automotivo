@@ -58,7 +58,7 @@ function Login() {
 
         <form onSubmit={handleLogin}>
           <div className="form-group">
-            <MdAccountCircle size={25} />
+            <MdAccountCircle size={30} />
             <input
               type="text"
               placeholder="email"
@@ -68,7 +68,7 @@ function Login() {
           </div>
 
           <div className="form-group">
-            <GiPadlock size={25} />
+            <GiPadlock size={30} />
             <input
               type={showing ? "text" : "password"}
               placeholder="senha"
@@ -79,16 +79,18 @@ function Login() {
               <BiShow
                 onClick={() => handleShowPassword(false)}
                 className="cursor-pointer"
-                size={25}
+                size={30}
               />
             ) : (
               <BiHide
                 onClick={() => handleShowPassword(true)}
                 className="cursor-pointer"
-                size={25}
+                size={30}
               />
             )}
           </div>
+
+          <hr />
 
           {loading ? (
             <ReactLoading type={"bubbles"} />

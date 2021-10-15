@@ -2,10 +2,13 @@ import React from 'react';
 import moment from 'moment';
 import currency from 'currency.js';
 import { FaPencilAlt, FaTrashAlt } from 'react-icons/fa';
+import http from '../../services/http';
 
 import './styles.scss';
+import toast from 'react-hot-toast';
 
-function ShowSupplies({supplies}) {
+function ShowSupplies(props) {
+  const {supplies, getVehicle} = props;
 
   function media(supply, index) {
     let previousSupply = supplies[index - 1];
@@ -16,10 +19,18 @@ function ShowSupplies({supplies}) {
     return ((currentSupplyKm - previousSupplyKm) / currentSupplyLiters).toFixed(2);
   }
 
-  function handleDelete(event) {
+  async function handleDelete(event, id) {
     event.stopPropagation();
 
-    alert('delete')
+    if(window.confirm('Tem certeza que deseja excluir este abastecimento?')) {
+      try {
+        await http.delete(`supplies/${id}`)
+        toast.success('Removido com sucesso');
+        getVehicle();
+      } catch (error) {
+        toast.error('Erro ao remover');
+      }
+    }
   }
 
   function handleUpdate(event) {
@@ -71,7 +82,7 @@ function ShowSupplies({supplies}) {
                 <FaTrashAlt 
                   className="mx-1 cursor-pointer"
                   color="#f95656"
-                  onClick={handleDelete}
+                  onClick={(e) => handleDelete(e, supply?.id)}
                 />
               </td>
             </tr>

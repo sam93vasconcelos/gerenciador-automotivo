@@ -110,7 +110,7 @@ function ShowVehicle(props) {
 
 				<hr />
 
-				<ShowSupplies supplies={ supplies } />
+				<ShowSupplies supplies={ supplies } getVehicle={ getVehicle } />
 			</div>
 		</div>
 	);
