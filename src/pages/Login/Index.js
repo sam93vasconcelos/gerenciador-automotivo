@@ -99,6 +99,10 @@ function Login() {
           )}
 
           <p>
+            Esqueceu a senha? Clique <Link to="/email">aqui</Link>.
+          </p>
+
+          <p>
             Não tem uma conta? Clique <Link to="/sign-up">aqui</Link> para
             criar!
           </p>

@@ -13,6 +13,8 @@ import NewVehicle from "./pages/NewVehicle/NewVehicle";
 import ShowVehicle from "./pages/ShowVehicle/Index";
 import LoadingContext from './contexts/LoadingContext';
 import GlobalLoading from "./components/GlobalLoading/Index";
+import Reset from "./pages/ResetPassword/Index";
+import Email from "./pages/ResetPassword/RequestEmail";
 
 function App() {
   return (
@@ -28,6 +30,8 @@ function App() {
             <Route component={SignUp} path="/sign-up" />
             <Route component={NewVehicle} path="/novo-veiculo" />
             <Route component={ShowVehicle} path="/detalhes-veiculo/:id" />
+            <Route component={Reset} path="/reset/:token/:email" />
+            <Route component={Email} path="/email" />
           </Switch>
         </Router>
       </LoadingContext>

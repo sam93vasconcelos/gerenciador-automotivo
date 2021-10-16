@@ -1,0 +1,15 @@
+.reset-password-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+
+  .content {
+    background: #555;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: -2px -2px 5px #777, 2px 2px 5px #222;
+    max-width: 80vw;
+  }
+}
