@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import http from '../../services/http';
+import { removeComma } from "../../services/utilities";
 
 import "./styles.scss";
 
@@ -31,11 +32,19 @@ function EditSupply({ supply, getVehicle, closeModal }) {
     }
   }
 
+  function handlePriceChange(e) {
+    let { value } = e.target;
+    setPrice(value);
+    
+    let result = removeComma(liters) * removeComma(value);
+    setTotal(result.toFixed(2));
+  }
+
   function handleLitersChange(e) {
     let { value } = e.target;
     setLiters(value);
     
-    let result = price * value;
+    let result = removeComma(price) * removeComma(value);
     setTotal(result.toFixed(2));
   }
 
@@ -61,7 +70,7 @@ function EditSupply({ supply, getVehicle, closeModal }) {
             type="text" 
             placeholder="Preço Litro"
             value={price}
-            onChange={ (e) => setPrice(e.target.value) }
+            onChange={ handlePriceChange }
           />
           <label htmlFor="liters">Litros</label>
           <input
