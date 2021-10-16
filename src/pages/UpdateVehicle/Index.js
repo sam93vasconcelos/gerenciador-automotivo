@@ -15,7 +15,7 @@ function UpdateVehicle({vehicle, fn, handleUpdatedVehicle}) {
     setName(vehicle?.name ?? '');
     setYear(vehicle?.year ?? '');
     setPlate(vehicle?.plate ?? '');
-  }, [vehicle])
+  }, [vehicle]);
 
   function validate() {
     let isValid = true;

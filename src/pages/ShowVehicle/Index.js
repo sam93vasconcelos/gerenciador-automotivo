@@ -19,6 +19,12 @@ function ShowVehicle(props) {
 
 	useEffect(() => {
 		getVehicle()
+
+		return () => {
+			setVehicle({});
+			setSupplies({});
+			setLoading(false);
+		}
 	}, []);
 
 	async function getVehicle() {

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import ReactLoading from 'react-loading';
@@ -14,85 +14,16 @@ function Home() {
   const [plate, setPlate] = useState('');
   const [saving, setSaving] = useState(false);
 
-  useEffect(() => {
-    document.title = 'Gerenciador Automotivo | Adicionar Veículo';
-  })
-
-  function validate() {
-    let isValid = true;
-
-    if(!name) {
-      document.getElementById('name').classList.add('validation-fail');
-      isValid = false;
-    }
-
-    if(!year) {
-      document.getElementById('year').classList.add('validation-fail');
-      isValid = false;
-    }
-
-    if(!plate) {
-      document.getElementById('plate').classList.add('validation-fail');
-      isValid = false;
-    }
-
-    return isValid;
-  }
-
-  function handleWarning(target, status) {
-    let field = document.getElementById(target);
-
-    if(status === true) {
-      field.classList.add('validation-fail');
-    } else {
-      field.classList.remove('validation-fail');
-    }
-  }
-
-  function handleNameInput(event) {
-    if(event.target.value.length > 0) {
-      handleWarning('name', false)
-    } else {
-      handleWarning('name', true)
-    }
-
-    setName(event.target.value)
-  }
-
-  function handleYearInput(event) {
-    if(event.target.value.length > 0) {
-      handleWarning('year', false)
-    } else {
-      handleWarning('year', true)
-    }
-
-    setYear(event.target.value)
-  }
-
-  function handlePlateInput(event) {
-    if(event.target.value.length > 0) {
-      handleWarning('plate', false)
-    } else {
-      handleWarning('plate', true)
-    }
-
-    setPlate(event.target.value)
-  }
-
   async function saveVehicle(event) {
     event.preventDefault();
 
-    if(!validate()) {
-      return
-    }
-
-    setSaving(true)
+    setSaving(true);
 
     try {
-      await http.post('vehicles', { name, year, plate })
-      toast.success('Veículo salvo')
+      await http.post('vehicles', { name, year, plate });
+      toast.success('Veículo salvo');
     } catch (error) {
-      toast.error('Erro ao salvar veículo')
+      toast.error('Erro ao salvar veículo');
     }
 
     setSaving(false)
@@ -110,25 +41,28 @@ function Home() {
         <h2>Novo Veículo</h2>
         <section className="inputs">
           <input
+            required
             autoFocus
             type="text"
             placeholder="Nome"
             value={ name }
-            onChange={ handleNameInput }
+            onChange={ (e) => setName(e.target.value) }
             id="name"
           />
           <input
+            required
             type="text"
             placeholder="Ano"
             value={ year }
-            onChange={ handleYearInput }
+            onChange={ (e) => setYear(e.target.value) }
             id="year"
           />
           <input
+            required
             type="text"
             placeholder="Placa"
             value={ plate }
-            onChange={ handlePlateInput }
+            onChange={ (e) => setPlate(e.target.value) }
             id="plate"
           />
 

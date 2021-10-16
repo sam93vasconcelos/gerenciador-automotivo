@@ -4,6 +4,7 @@ import http from '../../services/http';
 import { removeComma } from '../../services/utilities';
 
 import "./styles.scss";
+import useLoading from '../../hooks/useLoading';
 
 function NewSupply({ fn, addSupplyToArray, vehicle_id }) {
   const [km, setKm] = useState('');
@@ -11,6 +12,7 @@ function NewSupply({ fn, addSupplyToArray, vehicle_id }) {
   const [liters, setLiters] = useState('');
   const [total, setTotal] = useState('');
   const [date, setDate] = useState(new Date().toISOString().slice(0,10));
+  const { setLoading } = useLoading();
 
   fn.handleAddSupply = () => {
     document.getElementById("supply-container").classList.add("show-container");
@@ -30,6 +32,7 @@ function NewSupply({ fn, addSupplyToArray, vehicle_id }) {
   async function saveSupply(e) {
     e.preventDefault();
 
+    setLoading(true);
     try {
       let { data } = await http.post('supplies', {
         km,
@@ -44,13 +47,14 @@ function NewSupply({ fn, addSupplyToArray, vehicle_id }) {
       handleHideSupply();
     } catch (error) {
       if(error.response.status === 422) {
-        Object.values(error.response.data.errors).map(err => {
+        Object.values(error.response.data.errors).forEach(err => {
           toast.error(err);
         });
       } else {
         toast.error('Erro ao salvar');
       }
     }
+    setLoading(false);
   }
 
   function handlePriceChange(e) {

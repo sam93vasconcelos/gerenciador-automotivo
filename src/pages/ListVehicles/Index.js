@@ -14,6 +14,11 @@ function VehicleList() {
 
   useEffect(() => {
     getVehicles();
+
+    return () => {
+      setVehicles([]);
+      setLoading(false);
+    }
   }, []);
 
   async function getVehicles() {

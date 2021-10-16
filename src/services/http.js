@@ -5,7 +5,7 @@ import { getToken } from './auth';
 import history from './history';
 
 const http = axios.create({
-	baseURL: 'http://192.168.7.114:8000/api/'
+	baseURL: 'http://veiculos.samuelvasconcelos.xyz/api/'
 });
 
 http.interceptors.request.use(
@@ -27,6 +27,7 @@ http.interceptors.response.use(
 		console.log(error);
 		if (error.response.status === 401) {
 			toast.error('Você não está autenticado!');
+			localStorage.removeItem('token');
 			history.push('/login');
 		} else if(error.response.status === 403) {
 			toast.error('Não autorizado');

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { MdAccountCircle } from "react-icons/md";
 import { GiPadlock } from "react-icons/gi";
@@ -8,13 +8,23 @@ import ReactLoading from "react-loading";
 import "./styles.scss";
 
 import http from "../../services/http";
-import { setToken } from "../../services/auth";
+import { getToken, setToken } from "../../services/auth";
 
 import carImg from "../../assets/car.png";
 
 import history from "../../services/history";
 
 function Login() {
+  useEffect(() => {
+    if(getToken()) {
+      history.push('/');
+    }
+
+    return () => {
+      
+    }
+  }, []);
+
   const [showing, setShowing] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -39,8 +49,11 @@ function Login() {
       setToken(data.access_token);
       history.push("/");
     } catch (e) {
-      console.log(e);
-      toast.error("Erro!");
+      if(e.response.status === 422) {
+        toast.error("Usuário ou senha inválida!");
+      } else {
+        toast.error("Erro ao refazer login!");
+      }
     }
 
     setLoading(false);
