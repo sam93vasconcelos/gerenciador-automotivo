@@ -1,6 +1,6 @@
 # 🚙 Gerenciador Automotivo
 
-Gerenciador automotivo para controle de veículos e abastecimentos. Esse é um projeto para fins de estudo e de portifólio.
+Gerenciador automotivo para controle de veículos e abastecimentos. Esse é um projeto para fins de estudo e de Portfólio.
 
 ## Projeto funcionando:
 
