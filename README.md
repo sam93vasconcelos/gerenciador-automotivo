@@ -6,7 +6,7 @@ Gerenciador automotivo para controle de veículos e abastecimentos. Esse é um p
 
 [http://meus-veiculos.samuelvasconcelos.xyz](http://meus-veiculos.samuelvasconcelos.xyz)
 
-### Projeto construido com:
+### Projeto construído com:
 
 <div style="display: flex;">
   <img width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" />
@@ -23,4 +23,4 @@ Gerenciador automotivo para controle de veículos e abastecimentos. Esse é um p
 [react-icons](https://react-icons.github.io/react-icons) | 
 [react-loading](https://www.npmjs.com/package/react-loading) | 
 [react-modal](https://github.com/reactjs/react-modal) | 
-[react-router-dom](https://reactrouter.com/web/guides/quick-start)
+[react-router](https://reactrouter.com/web/guides/quick-start)
