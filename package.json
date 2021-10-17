@@ -1,5 +1,5 @@
 {
-  "name": "app",
+  "name": "Gerenciador Automotivo",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -20,6 +20,7 @@
     "react-scripts": "4.0.3",
     "web-vitals": "^1.0.1"
   },
+  "homepage": "http://meus-veiculos.samuelvasconcelos.xyz",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
